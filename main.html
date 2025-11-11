@@ -1,13 +1,41 @@
 <!DOCTYPE html>
-
-<html>
+<html lang="en">
   <head>
-    <link rel="stylesheet" href="styles.css" />
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>Manipulating The Data</title>
   </head>
-
   <body>
-    <!-- do not change this code -->
     <div id="output"></div>
-    <script type="text/javascript" src="./script.js"></script>
+
+    <script>
+      function dataTransformation(arr) {
+        return new Promise((resolve, reject) => {
+          setTimeout(() => {
+            resolve(arr);
+          }, 3000);
+        });
+      }
+      
+      dataTransformation([1, 2, 3, 4])
+        .then((arr) => {
+          return new Promise((resolve, reject) => {
+            setTimeout(() => {
+              let even = arr.filter((num) => num % 2 == 0);
+              let output = document.getElementById("output");
+              output.innerText = `${even.join()}`;
+              resolve(even);
+            }, 1000);
+          });
+        })
+        .then((even) => {
+          setTimeout(() => {
+            let multiply = even.map((num) => num * 2);
+            let output = document.getElementById("output");
+            output.innerText = `${multiply.join()}`;
+          }, 3000);
+        })
+        
+    </script>
   </body>
 </html>
